@@ -50,6 +50,6 @@ def restore_default_address(sender, instance, **kwargs):
 def slugify_coffee_shop(sender, instance, **kwargs):
     # Set instance.is_out_of_stock to False if instance.stock_count is greater than zero and vice-versa.
     if instance.stock_count > 0:
-        instance.is_out_of_stock = True
-    else:
         instance.is_out_of_stock = False
+    else:
+        instance.is_out_of_stock = True

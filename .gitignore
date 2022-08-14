@@ -92,3 +92,5 @@ emails/
 .pytest_cache
 .mypy_cache
 db.sqlite3
+.TASK-Django-M13-Signals
+

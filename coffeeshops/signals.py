@@ -37,13 +37,17 @@ def add_default_address(sender, instance, created, **kwargs):
 @receiver(post_delete, sender=CoffeeShopAddress)
 def restore_default_address(sender, instance, **kwargs):
     # Get the coffee shop from the deleted instance (hint: use the related name coffee_shop) and store it in a variable called coffee_shop.
-    coffee_shop = instance.coffee_shop
+    coffee_shop_obj = instance.coffee_shop
+    print('coffee_shop_obj', coffee_shop_obj)
     # Create a new CoffeeShopAddress instance.
-    defualtLocation = CoffeeShopAddress.objects.create()
+    defualtLocation = CoffeeShopAddress.objects.create(coffee_shop=coffee_shop_obj)
+    print('defualtLocation', defualtLocation)
     # Set coffee_shop.location equal to the new CoffeeShopAddress object you've created.
-    coffee_shop.location = defualtLocation
+    coffee_shop_obj.location = defualtLocation
+    print('coffee_shop.location', coffee_shop_obj.location)
     # Save your coffee_shop instance.
-    coffee_shop.save()
+    coffee_shop_obj.save()
+
 
 
 @receiver(pre_save, sender=Drink)
